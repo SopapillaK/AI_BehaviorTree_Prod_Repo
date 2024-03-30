@@ -104,9 +104,45 @@ public class HulkOut : Task
     {
         //Debug.Log("hulking out");
         mEntity.transform.localScale *= 2;
-        mEntity.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+        mEntity.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
         succeeded = true;
         EventBus.TriggerEvent(TaskFinished);
+    }
+}
+
+public class LetMeInAudio : Task
+{
+    GameObject mEntity;
+
+    public LetMeInAudio(GameObject someEntity)
+    {
+        mEntity = someEntity;
+    }
+    public override void run()
+    {
+        AudioSource ac = mEntity.GetComponent<AudioSource>();
+        ac.Play();
+        succeeded = true;
+        EventBus.TriggerEvent(TaskFinished);
+
+    }
+}
+
+public class YahooAudio : Task
+{
+    Door mDoor;
+
+    public YahooAudio(Door someDoor)
+    {
+        mDoor = someDoor;
+    }
+    public override void run()
+    {
+        AudioSource ac = mDoor.GetComponent<AudioSource>();
+        ac.Play();
+        succeeded = true;
+        EventBus.TriggerEvent(TaskFinished);
+
     }
 }
 

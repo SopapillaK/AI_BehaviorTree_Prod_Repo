@@ -43,9 +43,10 @@ public class BruceBanner : MonoBehaviour
         Task isDoorNotLocked = new IsFalse(theDoor.isLocked);
         Task waitABeat = new Wait(0.5f);
         Task openDoor = new OpenDoor(theDoor);
-        Task waitABeat2 = new Wait(0.5f);
         Task jump = new JumpForJoy(this.gameObject);
+        Task yahooAudio = new YahooAudio(theDoor);
         taskList.Add(isDoorNotLocked);
+        taskList.Add(yahooAudio);
         taskList.Add(waitABeat);
         taskList.Add(openDoor);
         taskList.Add(jump);
@@ -56,7 +57,11 @@ public class BruceBanner : MonoBehaviour
         Task isDoorClosed = new IsTrue(theDoor.isClosed);
         Task hulkOut = new HulkOut(this.gameObject);
         Task bargeDoor = new BargeDoor(theDoor.transform.GetChild(0).GetComponent<Rigidbody>());
+        Task letMeInAudio = new LetMeInAudio(this.gameObject);
+        taskList.Add(letMeInAudio);
         taskList.Add(isDoorClosed);
+        taskList.Add(waitABeat);
+        taskList.Add(jump);
         taskList.Add(waitABeat);
         taskList.Add(hulkOut);
         taskList.Add(waitABeat);
